@@ -75,7 +75,20 @@ public class CustomerForm extends VerticalLayout {
         customerDTO.setStreetName(streetName.getValue());
         customerDTO.setPostalCode(postalCode.getValue());
         customerDTO.setEmail(email.getValue());
-        customerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));
+        if (!phoneNumber.getValue().isEmpty()) {
+            customerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));
+        } else {
+            Notification.show("Phone number is required");
+            return null;
+        }
+
+        if (customerDTO.getFirstName().isEmpty() || customerDTO.getLastName().isEmpty() ||
+                customerDTO.getBirthdate() == null || customerDTO.getCountry().isEmpty() ||
+                customerDTO.getCity().isEmpty() || customerDTO.getStreetName().isEmpty() ||
+                customerDTO.getPostalCode().isEmpty() || customerDTO.getEmail().isEmpty()) {
+            Notification.show("Please fill in all fields");
+            return null;
+        }
 
         try {
             ObjectMapper mapper = new ObjectMapper();
