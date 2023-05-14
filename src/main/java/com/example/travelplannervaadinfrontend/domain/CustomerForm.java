@@ -6,6 +6,7 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -13,18 +14,15 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 @Route("customer")
 public class CustomerForm extends VerticalLayout {
@@ -39,16 +37,11 @@ public class CustomerForm extends VerticalLayout {
     private final TextField phoneNumber = new TextField("Phone number");
     private final Button saveButton = new Button("Save", this::saveCustomer);
 
-    public Date getBirthdate() {
-        LocalDate localDate = birthdate.getValue();
-        if (localDate == null) {
-            return null;
-        }
-        Instant instant = localDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
-        return Date.from(instant);
-    }
+
     public CustomerForm() {
-        //setSizeFull();
+        setMargin(true);
+        setSpacing(false);
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         add(
                 firstName,
                 lastName,
@@ -63,6 +56,15 @@ public class CustomerForm extends VerticalLayout {
         );
     }
 
+    public Date getBirthdate() {
+        LocalDate localDate = birthdate.getValue();
+        if (localDate == null) {
+            return null;
+        }
+        Instant instant = localDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
+        return Date.from(instant);
+    }
+
     private CustomerDTO saveCustomer(ClickEvent<Button> event) {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName(firstName.getValue());
@@ -75,21 +77,30 @@ public class CustomerForm extends VerticalLayout {
         customerDTO.setEmail(email.getValue());
         customerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String requestBody = mapper.writeValueAsString(customerDTO);
 
-        RestTemplate restTemplate = new RestTemplate();
-        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
-        messageConverters.add(converter);
-        restTemplate.setMessageConverters(messageConverters);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<CustomerDTO> requestEntity = new HttpEntity<>(customerDTO, headers);
-        String url = "http://localhost:8080/v1/customers";
-        CustomerDTO cus= restTemplate.postForEntity(url, requestEntity, CustomerDTO.class).getBody();
-        Notification.show("Customer saved");
-        return cus;
+            HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "http://localhost:8080/v1/customers";
+            ResponseEntity<CustomerDTO> responseEntity = restTemplate.postForEntity(url, requestEntity, CustomerDTO.class);
+
+            Notification.show("Customer saved");
+            return responseEntity.getBody();
+        } catch (JsonProcessingException e) {
+            Notification.show("Error saving customer");
+            return null;
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            Notification.show("Error saving customer: " + e.getResponseBodyAsString());
+            return null;
+        } catch (RestClientException e) {
+            Notification.show("Error saving customer: " + e.getMessage());
+            return null;
+        }
     }
 
 }

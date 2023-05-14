@@ -2,7 +2,6 @@ package com.example.travelplannervaadinfrontend.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
