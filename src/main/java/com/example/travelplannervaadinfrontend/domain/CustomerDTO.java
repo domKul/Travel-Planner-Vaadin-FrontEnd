@@ -1,18 +1,32 @@
 package com.example.travelplannervaadinfrontend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 public class CustomerDTO {
+    @JsonProperty("firstName")
     private String firstName;
+    @JsonProperty("lastName")
     private String lastName;
+    @JsonProperty("birthdate")
     private Date birthdate;
+    @JsonProperty("country")
     private String country;
+    @JsonProperty("city")
     private String city;
+
+    @JsonProperty("streetName")
     private String streetName;
+    @JsonProperty("postalCode")
     private String postalCode;
+    @JsonProperty("email")
     private String email;
+    @JsonProperty("phoneNumber")
     private int phoneNumber;
+
 
     public CustomerDTO(String firstName, String lastName, Date birthdate, String country, String city,
                        String streetName, String postalCode, String email, int phoneNumber) {

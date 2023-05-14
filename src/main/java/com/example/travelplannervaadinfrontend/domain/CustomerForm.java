@@ -1,5 +1,7 @@
 package com.example.travelplannervaadinfrontend.domain;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -10,12 +12,19 @@ import com.vaadin.flow.router.Route;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Route("customer")
 public class CustomerForm extends VerticalLayout {
@@ -39,7 +48,7 @@ public class CustomerForm extends VerticalLayout {
         return Date.from(instant);
     }
     public CustomerForm() {
-        setSizeFull();
+        //setSizeFull();
         add(
                 firstName,
                 lastName,
@@ -64,13 +73,19 @@ public class CustomerForm extends VerticalLayout {
         customerDTO.setStreetName(streetName.getValue());
         customerDTO.setPostalCode(postalCode.getValue());
         customerDTO.setEmail(email.getValue());
-        customerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));;
+        customerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<CustomerDTO> requestEntity = new HttpEntity<>(customerDTO, headers);
         RestTemplate restTemplate = new RestTemplate();
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+        messageConverters.add(converter);
+        restTemplate.setMessageConverters(messageConverters);
+
+        HttpEntity<CustomerDTO> requestEntity = new HttpEntity<>(customerDTO, headers);
         String url = "http://localhost:8080/v1/customers";
         CustomerDTO cus= restTemplate.postForEntity(url, requestEntity, CustomerDTO.class).getBody();
         Notification.show("Customer saved");
