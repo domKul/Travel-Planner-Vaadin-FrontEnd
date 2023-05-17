@@ -1,4 +1,4 @@
-package com.example.travelplannervaadinfrontend.domain;
+package com.example.travelplannervaadinfrontend.customer.save;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,6 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -25,7 +24,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Route("customer")
-public class CustomerForm extends VerticalLayout {
+public class CustomerSave extends VerticalLayout {
     private final TextField firstName = new TextField("First name");
     private final TextField lastName = new TextField("Last name");
     private final DatePicker birthdate = new DatePicker("Birthdate");
@@ -38,7 +37,7 @@ public class CustomerForm extends VerticalLayout {
     private final Button saveButton = new Button("Save", this::saveCustomer);
 
 
-    public CustomerForm() {
+    public CustomerSave() {
         setMargin(true);
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
