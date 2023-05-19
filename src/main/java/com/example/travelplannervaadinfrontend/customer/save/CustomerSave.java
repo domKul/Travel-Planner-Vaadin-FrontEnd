@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -35,6 +36,8 @@ public class CustomerSave extends VerticalLayout {
     private final TextField email = new TextField("Email");
     private final TextField phoneNumber = new TextField("Phone number");
     private final Button saveButton = new Button("Save", this::saveCustomer);
+    Button backButton = new Button("Back", event -> navigateBack());
+
 
 
 
@@ -42,6 +45,7 @@ public class CustomerSave extends VerticalLayout {
         setMargin(true);
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        backButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(
                 firstName,
                 lastName,
@@ -52,8 +56,13 @@ public class CustomerSave extends VerticalLayout {
                 postalCode,
                 email,
                 phoneNumber,
-                saveButton
+                saveButton,
+                backButton
         );
+    }
+    public void navigateBack() {
+
+        getUI().ifPresent(ui -> ui.navigate("GetStart"));
     }
 
     public Date getBirthdate() {

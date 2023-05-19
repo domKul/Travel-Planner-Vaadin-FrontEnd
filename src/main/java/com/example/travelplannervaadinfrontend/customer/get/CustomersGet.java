@@ -1,6 +1,7 @@
 package com.example.travelplannervaadinfrontend.customer.get;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -9,9 +10,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.List;
-@Route("customer-form")
+@Route("customer-list")
 public class CustomersGet extends VerticalLayout {
-    private final Grid<CustomerDTOGet> customerGrid;
+    private Grid<CustomerDTOGet> customerGrid;
+
+    public void navigateBack() {
+
+        getUI().ifPresent(ui -> ui.navigate("GetStart"));
+    }
 
     public CustomersGet() {
         setMargin(true);
@@ -33,7 +39,12 @@ public class CustomersGet extends VerticalLayout {
         Button showCustomersButton = new Button("Show Customers");
         showCustomersButton.addClickListener(event -> showCustomers());
 
-        add(customerGrid, showCustomersButton);
+        Button bkButton = new Button("Back", event -> navigateBack());
+        bkButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+
+
+        add(customerGrid, showCustomersButton, bkButton);
     }
 
     private void showCustomers() {

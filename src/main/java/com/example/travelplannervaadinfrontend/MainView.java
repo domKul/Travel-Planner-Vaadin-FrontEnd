@@ -13,9 +13,6 @@ import com.vaadin.flow.router.Route;
 public class MainView extends VerticalLayout {
 
 
-
-
-
     public MainView() {
 
         setMargin(true);
@@ -36,7 +33,7 @@ public class MainView extends VerticalLayout {
         buttonAPI.getStyle().set("background-color", "white");
         buttonAPI.getElement().getStyle().set("position", "absolute");
         buttonAPI.getElement().getStyle().set("top", "10%");
-        buttonAPI.getElement().getStyle().set("left", "5%");
+        buttonAPI.getElement().getStyle().set("left", "82%");
         buttonAPI.addClickListener(e -> getUI().ifPresent(ui -> ui.getPage().executeJs("window.open('https://github.com/domKul/Travel-Planner', '_blank')")));
 
         add(buttonGetStart,buttonAPI);
