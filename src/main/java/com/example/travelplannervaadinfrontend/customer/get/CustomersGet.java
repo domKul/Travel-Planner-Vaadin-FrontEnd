@@ -10,10 +10,14 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import java.util.List;
 @Route("customer-form")
-public class Get extends VerticalLayout {
+public class CustomersGet extends VerticalLayout {
     private final Grid<CustomerDTOGet> customerGrid;
 
-    public Get() {
+    public CustomersGet() {
+        setMargin(true);
+        setSpacing(false);
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        setAlignItems(Alignment.CENTER);
         customerGrid = new Grid<>();
         customerGrid.addColumn(CustomerDTOGet::getCustomerId).setHeader("Customer Id");
         customerGrid.addColumn(CustomerDTOGet::getFirstName).setHeader("First Name");
@@ -47,7 +51,7 @@ public class Get extends VerticalLayout {
                 customerGrid.setItems(customers);
                 Notification.show("Customers loaded successfully");
             } else {
-                Notification.show("No customers found");
+                Notification.show("List are empty");
             }
         } catch (WebClientResponseException e) {
             Notification.show("Error retrieving customers: " + e.getResponseBodyAsString());
