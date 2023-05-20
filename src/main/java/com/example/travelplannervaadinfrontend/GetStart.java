@@ -1,7 +1,6 @@
 package com.example.travelplannervaadinfrontend;
 
-import com.example.travelplannervaadinfrontend.customer.get.CustomersGet;
-import com.example.travelplannervaadinfrontend.customer.save.CustomerSave;
+import com.example.travelplannervaadinfrontend.traveler.get.TravelersGet;
 import com.example.travelplannervaadinfrontend.hotel.get.HotelGet;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -22,8 +21,8 @@ public class GetStart extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         setAlignItems(Alignment.CENTER);
 
-        Button button = new Button("Create User", e -> UI.getCurrent().navigate(CustomerSave.class));
-        Button showCustomersButton = new Button("Menage Customers", e ->UI.getCurrent().navigate(CustomersGet.class));
+       // Button button = new Button("Create User", e -> UI.getCurrent().navigate(TravelerSave.class));
+        Button showCustomersButton = new Button("Menage travelers", e ->UI.getCurrent().navigate(TravelersGet.class));
 
         Button showHotels = new Button("Show Hotels", e ->UI.getCurrent().navigate(HotelGet.class));
 
@@ -31,7 +30,7 @@ public class GetStart extends VerticalLayout {
         bkButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
 
-        add(button,showCustomersButton,showHotels, bkButton);
+        add(showCustomersButton,showHotels, bkButton);
 
 
     }

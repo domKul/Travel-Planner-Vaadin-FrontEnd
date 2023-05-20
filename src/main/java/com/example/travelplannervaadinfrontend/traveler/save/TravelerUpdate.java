@@ -1,6 +1,6 @@
-package com.example.travelplannervaadinfrontend.customer.save;
+package com.example.travelplannervaadinfrontend.traveler.save;
 
-import com.example.travelplannervaadinfrontend.customer.get.CustomerDTOGet;
+import com.example.travelplannervaadinfrontend.traveler.get.TravelerDTOGet;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -17,9 +17,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-@Route("customerUpdate")
-public class CustomerUpdate extends Dialog {
-    private final CustomerDTOGet customer;
+@Route("travelerUpdate")
+public class TravelerUpdate extends Dialog {
+    private final TravelerDTOGet customer;
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
     private  DatePicker birthdate = new DatePicker("Birthdate");
@@ -30,7 +30,7 @@ public class CustomerUpdate extends Dialog {
     private  TextField email = new TextField("Email");
     private  TextField phoneNumber = new TextField("Phone number");
 
-    public CustomerUpdate(CustomerDTOGet customer) {
+    public TravelerUpdate(TravelerDTOGet customer) {
         this.customer = customer;
         setCloseOnEsc(false);
         setCloseOnOutsideClick(false);
@@ -73,7 +73,7 @@ public class CustomerUpdate extends Dialog {
         String newPhoneNumber = phoneNumber.getValue();
 
 
-        CustomerDTO updatedCustomer = new CustomerDTO();
+        TravelerDTO updatedCustomer = new TravelerDTO();
         updatedCustomer.setFirstName(newLastName);
         updatedCustomer.setLastName(newFirstName);
         updatedCustomer.setBirthdate(getBirthdate());
@@ -86,16 +86,16 @@ public class CustomerUpdate extends Dialog {
 
         try {
             WebClient webClient = WebClient.create("http://localhost:8080/v1/customers");
-            CustomerDTO response = webClient.put()
+            TravelerDTO response = webClient.put()
                     .uri("/{customerId}", customer.getCustomerId())
                     .contentType(MediaType.APPLICATION_JSON)
                     .bodyValue(updatedCustomer)
                     .retrieve()
-                    .bodyToMono(CustomerDTO.class)
+                    .bodyToMono(TravelerDTO.class)
                     .block();
 
             if (response != null) {
-                Notification.show("Klient został zaktualizowany");
+                Notification.show("Updated");
                 close();
             } else {
                 Notification.show("Wystąpił błąd podczas zapisywania klienta");

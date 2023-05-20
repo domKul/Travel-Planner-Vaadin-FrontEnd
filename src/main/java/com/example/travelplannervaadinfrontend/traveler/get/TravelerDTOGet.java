@@ -1,4 +1,4 @@
-package com.example.travelplannervaadinfrontend.customer.get;
+package com.example.travelplannervaadinfrontend.traveler.get;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 @Component
-public class CustomerDTOGet {
+public class TravelerDTOGet {
     @JsonProperty("customerId")
     private Integer customerId;
     @JsonProperty("firstName")

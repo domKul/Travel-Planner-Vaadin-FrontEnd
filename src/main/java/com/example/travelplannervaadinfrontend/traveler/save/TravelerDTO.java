@@ -1,4 +1,4 @@
-package com.example.travelplannervaadinfrontend.customer.save;
+package com.example.travelplannervaadinfrontend.traveler.save;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class CustomerDTO {
+public class TravelerDTO {
     @JsonProperty("firstName")
     @NotNull
     private String firstName;
@@ -38,7 +38,7 @@ public class CustomerDTO {
     private int phoneNumber;
 
 
-    public CustomerDTO() {
+    public TravelerDTO() {
     }
 
     public String getFirstName() {

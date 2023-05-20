@@ -1,4 +1,4 @@
-package com.example.travelplannervaadinfrontend.customer.save;
+package com.example.travelplannervaadinfrontend.traveler.save;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,8 +24,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-@Route("customer")
-public class CustomerSave extends VerticalLayout {
+@Route("traveler")
+public class TravelerSave extends VerticalLayout {
     private final TextField firstName = new TextField("First name");
     private final TextField lastName = new TextField("Last name");
     private final DatePicker birthdate = new DatePicker("Birthdate");
@@ -35,13 +35,13 @@ public class CustomerSave extends VerticalLayout {
     private final TextField postalCode = new TextField("Postal code");
     private final TextField email = new TextField("Email");
     private final TextField phoneNumber = new TextField("Phone number");
-    private final Button saveButton = new Button("Save", this::saveCustomer);
+    private final Button saveButton = new Button("Save", this::saveTraveler);
     Button backButton = new Button("Back", event -> navigateBack());
 
 
 
 
-    public CustomerSave() {
+    public TravelerSave() {
         setMargin(true);
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -62,7 +62,7 @@ public class CustomerSave extends VerticalLayout {
     }
     public void navigateBack() {
 
-        getUI().ifPresent(ui -> ui.navigate("GetStart"));
+        getUI().ifPresent(ui -> ui.navigate("customer-list"));
     }
 
     public Date getBirthdate() {
@@ -74,34 +74,34 @@ public class CustomerSave extends VerticalLayout {
         return Date.from(instant);
     }
 
-    private CustomerDTO saveCustomer(ClickEvent<Button> event) {
-        CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName(firstName.getValue());
-        customerDTO.setLastName(lastName.getValue());
-        customerDTO.setBirthdate(getBirthdate());
-        customerDTO.setCountry(country.getValue());
-        customerDTO.setCity(city.getValue());
-        customerDTO.setStreetName(streetName.getValue());
-        customerDTO.setPostalCode(postalCode.getValue());
-        customerDTO.setEmail(email.getValue());
+    private TravelerDTO saveTraveler(ClickEvent<Button> event) {
+        TravelerDTO travelerDTO = new TravelerDTO();
+        travelerDTO.setFirstName(firstName.getValue());
+        travelerDTO.setLastName(lastName.getValue());
+        travelerDTO.setBirthdate(getBirthdate());
+        travelerDTO.setCountry(country.getValue());
+        travelerDTO.setCity(city.getValue());
+        travelerDTO.setStreetName(streetName.getValue());
+        travelerDTO.setPostalCode(postalCode.getValue());
+        travelerDTO.setEmail(email.getValue());
         if (!phoneNumber.getValue().isEmpty()) {
-            customerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));
+            travelerDTO.setPhoneNumber(Integer.parseInt(phoneNumber.getValue()));
         } else {
             Notification.show("Phone number is required");
             return null;
         }
 
-        if (customerDTO.getFirstName().isEmpty() || customerDTO.getLastName().isEmpty() ||
-                customerDTO.getBirthdate() == null || customerDTO.getCountry().isEmpty() ||
-                customerDTO.getCity().isEmpty() || customerDTO.getStreetName().isEmpty() ||
-                customerDTO.getPostalCode().isEmpty() || customerDTO.getEmail().isEmpty()) {
+        if (travelerDTO.getFirstName().isEmpty() || travelerDTO.getLastName().isEmpty() ||
+                travelerDTO.getBirthdate() == null || travelerDTO.getCountry().isEmpty() ||
+                travelerDTO.getCity().isEmpty() || travelerDTO.getStreetName().isEmpty() ||
+                travelerDTO.getPostalCode().isEmpty() || travelerDTO.getEmail().isEmpty()) {
             Notification.show("Please fill in all fields");
             return null;
         }
 
         try {
             ObjectMapper mapper = new ObjectMapper();
-            String requestBody = mapper.writeValueAsString(customerDTO);
+            String requestBody = mapper.writeValueAsString(travelerDTO);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -109,18 +109,18 @@ public class CustomerSave extends VerticalLayout {
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
             RestTemplate restTemplate = new RestTemplate();
             String url = "http://localhost:8080/v1/customers";
-            ResponseEntity<CustomerDTO> responseEntity = restTemplate.postForEntity(url, requestEntity, CustomerDTO.class);
+            ResponseEntity<TravelerDTO> responseEntity = restTemplate.postForEntity(url, requestEntity, TravelerDTO.class);
 
             Notification.show("Customer saved");
             return responseEntity.getBody();
         } catch (JsonProcessingException e) {
-            Notification.show("Error saving customer");
+            Notification.show("Error saving traveler");
             return null;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            Notification.show("Error saving customer: " + e.getResponseBodyAsString());
+            Notification.show("Error saving traveler: " + e.getResponseBodyAsString());
             return null;
         } catch (RestClientException e) {
-            Notification.show("Error saving customer: " + e.getMessage());
+            Notification.show("Error saving traveler: " + e.getMessage());
             return null;
         }
     }
