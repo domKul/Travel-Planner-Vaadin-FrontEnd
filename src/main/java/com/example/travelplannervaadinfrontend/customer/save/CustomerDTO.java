@@ -3,9 +3,11 @@ package com.example.travelplannervaadinfrontend.customer.save;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class CustomerDTO {
     @JsonProperty("firstName")
     @NotNull

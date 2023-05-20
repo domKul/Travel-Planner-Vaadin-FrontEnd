@@ -23,7 +23,7 @@ public class GetStart extends VerticalLayout {
         setAlignItems(Alignment.CENTER);
 
         Button button = new Button("Create User", e -> UI.getCurrent().navigate(CustomerSave.class));
-        Button showCustomersButton = new Button("Show Customers", e ->UI.getCurrent().navigate(CustomersGet.class));
+        Button showCustomersButton = new Button("Menage Customers", e ->UI.getCurrent().navigate(CustomersGet.class));
 
         Button showHotels = new Button("Show Hotels", e ->UI.getCurrent().navigate(HotelGet.class));
 

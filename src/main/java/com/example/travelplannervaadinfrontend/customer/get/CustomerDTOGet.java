@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+@Component
 public class CustomerDTOGet {
     @JsonProperty("customerId")
     private Integer customerId;
@@ -29,7 +30,7 @@ public class CustomerDTOGet {
     @JsonProperty("email")
     private String email;
     @JsonProperty("phoneNumber")
-    private Integer phoneNumber;
+    private String phoneNumber;
     @JsonProperty("complaints")
     private List<Object> complaints;
     @JsonIgnore
@@ -126,12 +127,12 @@ public class CustomerDTOGet {
     }
 
     @JsonProperty("phoneNumber")
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
     @JsonProperty("phoneNumber")
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
