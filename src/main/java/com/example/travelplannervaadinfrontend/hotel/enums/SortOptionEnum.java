@@ -2,11 +2,11 @@ package com.example.travelplannervaadinfrontend.hotel.enums;
 
 public enum SortOptionEnum {
 
-    POPULARITY,
-    CLASS_ASCENDING,
-    CLASS_DESCENDING,
-    DISTANCE,
-    UPSORT_BH,
-    REVIEW_SCORE,
-    PRICE
+    popularity,
+    class_ascending,
+    class_descending,
+    distance,
+    upsort_bh,
+    review_score,
+    price
 }
