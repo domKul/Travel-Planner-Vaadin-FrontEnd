@@ -20,6 +20,7 @@ import java.util.List;
 @Route("getHotels")
 public class HotelGet extends VerticalLayout {
     private final Grid<HotelDTOGet> hotelGrid;
+    private final Grid<LocationDTO> locationDTOGrid;
     private ComboBox<LocationTypeEnum> destTypeComboBox;
     private ComboBox<LocaleOptionEnum> localeComboBox;
     private ComboBox<CurrencyEnum> filterByCurrencyComboBox;
@@ -30,9 +31,12 @@ public class HotelGet extends VerticalLayout {
     private final TextField checkoutDate = new TextField("checkout_date");
     private final TextField destId = new TextField("dest_id");
     private final TextField roomNumber = new TextField("room_number");
+    private final TextField name = new TextField("Name");
+    private final TextField locale = new TextField("Locale");
 
 
     public HotelGet() {
+
         setMargin(true);
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
@@ -45,15 +49,31 @@ public class HotelGet extends VerticalLayout {
         hotelGrid.addColumn(HotelDTOGet::getCurrency).setHeader("Currency").setSortable(true);
         hotelGrid.addColumn(HotelDTOGet::getHotelPrice).setHeader("Hotel_Price").setSortable(true);
 
+        locationDTOGrid = new Grid<>();
+        locationDTOGrid.addColumn(LocationDTO::getName).setHeader("Location Name").setSortable(true);
+        locationDTOGrid.addColumn(LocationDTO::getDest_id).setHeader("dest_id");
+        locationDTOGrid.addColumn(LocationDTO::getCountry).setHeader("country");
+        locationDTOGrid.addColumn(LocationDTO::getRegion).setHeader("Region").setSortable(true);
+        locationDTOGrid.addColumn(LocationDTO::getHotels).setHeader("Hotels").setSortable(true);
+
+
+
 
         Button showHotelsButton = new Button("Show Hotel List", event -> showHotelsInDB());
 
-        Button searchButton = new Button("search", event -> init());
+        Button searchButton = new Button("search Hotels", event -> initforHotel());
+        Button searchLocation = new Button("searchLocation", event -> initForLocation());
         Button backButton = new Button("Back", event -> navigateBack());
         backButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
 
-        add(searchButton, hotelGrid, showHotelsButton, backButton);
+        add(searchButton, hotelGrid, showHotelsButton, backButton,locationDTOGrid,searchLocation);
+    }
+
+    private void initForLocation(){
+
+        Button searchLocation = new Button("search Location", event -> searchLocation());
+        add(name,locale,searchLocation);
     }
 
     public void navigateBack() {
@@ -61,8 +81,8 @@ public class HotelGet extends VerticalLayout {
         getUI().ifPresent(ui -> ui.navigate("GetStart"));
     }
 
+    private void initforHotel() {
 
-    private void init() {
 
         orderedByComboBox = new ComboBox<>("Sort By", Arrays.asList(SortOptionEnum.values()));
 
@@ -79,6 +99,29 @@ public class HotelGet extends VerticalLayout {
         add(destTypeComboBox, roomNumber, destId, checkinDate, checkoutDate, adultsNumber, unitsEnumComboBox,
                 localeComboBox, filterByCurrencyComboBox, orderedByComboBox, searchButton);
     }
+
+    private void searchLocation() {
+
+        try {
+            WebClient webClient = WebClient.create("http://localhost:8080/v1/locations/getHotelslocation");
+
+             webClient.post()
+                    .uri(uriBuilder -> uriBuilder
+                            .queryParam("name", name.getValue())
+                            .queryParam("locale", locale.getValue())
+                            .build())
+                    .retrieve()
+                    .bodyToFlux(LocationDTO.class)
+                    .collectList()
+                    .block();
+            showLocationsInDB();
+        } catch (WebClientResponseException e) {
+            Notification.show("Error retrieving Locations: " + e.getResponseBodyAsString());
+        } catch (Exception e) {
+            Notification.show("Error retrieving Locations: " + e.getMessage());
+        }
+    }
+
 
 
     private void searchHotels() {
@@ -129,6 +172,29 @@ public class HotelGet extends VerticalLayout {
                 Notification.show("List is empty");
             }
         } catch (WebClientResponseException e) {
+            Notification.show("Error retrieving Hotels: " + e.getResponseBodyAsString());
+        } catch (Exception e) {
+            Notification.show("Error retrieving Hotels: " + e.getMessage());
+        }
+    }
+
+    private void showLocationsInDB(){
+        try{
+            WebClient webClient = WebClient.create("http://localhost:8080/v1/locations/getLocations");
+
+            List<LocationDTO> locations = webClient.get()
+                    .retrieve()
+                    .bodyToFlux(LocationDTO.class)
+                    .collectList()
+                    .block();
+
+            if (locations != null && !locations.isEmpty()){
+                locationDTOGrid.setItems(locations);
+                Notification.show("Locations loaded successfully");
+            }else {
+                Notification.show("List are empty");
+            }
+        }catch (WebClientResponseException e) {
             Notification.show("Error retrieving Hotels: " + e.getResponseBodyAsString());
         } catch (Exception e) {
             Notification.show("Error retrieving Hotels: " + e.getMessage());

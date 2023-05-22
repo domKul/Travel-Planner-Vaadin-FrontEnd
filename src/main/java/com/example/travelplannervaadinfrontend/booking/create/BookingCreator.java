@@ -44,16 +44,10 @@ public class BookingCreator extends VerticalLayout {
 
     public void navigateBack() {
 
-        getUI().ifPresent(ui -> ui.navigate("GetStart"));
+        getUI().ifPresent(ui -> ui.navigate("bookingList"));
     }
 
     private void saveBooking() {
-        if (customerIdField.isEmpty()){
-            customerIdField.setValue(String.valueOf(0));
-        }
-        if (hotelIdField.isEmpty()){
-            hotelIdField.setValue(String.valueOf(0));
-        }
         String startDate = String.valueOf(startDateField.getValue());
         String endDate = String.valueOf(endDateField.getValue());
         long customerId = Long.parseLong(customerIdField.getValue());

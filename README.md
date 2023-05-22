@@ -1,4 +1,4 @@
-# Travel-Planner-Vaadin-FrontEnd is your future vacation planner
+# Travel-Planner-Vaadin-FrontEnd is vacation planner
  To run the APi you need first run back-end-> [Back-End](https://github.com/domKul/Travel-Planner) and configure MySQL Data Base.
  - Functions:
  - 1.Searching Location for future visit  in progres

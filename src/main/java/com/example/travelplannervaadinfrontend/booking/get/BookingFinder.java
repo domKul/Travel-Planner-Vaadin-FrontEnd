@@ -24,7 +24,7 @@ public class BookingFinder extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
         setAlignItems(FlexComponent.Alignment.CENTER);
         bookingGrid = new Grid<>();
-        bookingGrid.addColumn(BookingDTOGetInfo::getBookTime).setHeader("Booking Time").setSortable(true);
+        bookingGrid.addColumn(BookingDTOGetInfo::getBookingId).setHeader("Booking ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGetInfo::getCustomerId).setHeader("Customer ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGetInfo::getHotelId).setHeader("Hotel ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGetInfo::getHotelName).setHeader("Name").setSortable(true);
@@ -33,10 +33,11 @@ public class BookingFinder extends VerticalLayout {
         bookingGrid.addColumn(BookingDTOGetInfo::getEndBooking).setHeader("End").setSortable(true);
 
         Button createBooking = new Button("Add booking", e -> UI.getCurrent().navigate(BookingCreator.class));
-        Button findBookings = new Button(" Refresh list", e -> updateBookingList());
+        Button deleteBooking = new Button("Delete booking", e -> deleteSelectedBooking());
+        Button findBookings = new Button(" Refresh list", e -> refreshBookingList());
         Button backButton = new Button("Back", event -> navigateBack());
 
-        add(createBooking,bookingGrid,findBookings,backButton);
+        add(createBooking,bookingGrid,findBookings,deleteBooking,backButton);
 
     }
     public void navigateBack() {
@@ -44,7 +45,29 @@ public class BookingFinder extends VerticalLayout {
         getUI().ifPresent(ui -> ui.navigate("GetStart"));
     }
 
-    private void updateBookingList() {
+    private void deleteSelectedBooking() {
+        BookingDTOGetInfo selectedBooking = bookingGrid.asSingleSelect().getValue();
+        if (selectedBooking != null) {
+            try {
+                WebClient webClient = WebClient.create("http://localhost:8080/v1/bookings");
+                webClient.delete()
+                        .uri("/{bookingId}", selectedBooking.getBookingId())
+                        .retrieve()
+                        .toBodilessEntity()
+                        .block();
+                refreshBookingList();
+                Notification.show("Booking Deleted !");
+            } catch (WebClientResponseException e) {
+                Notification.show("Booking deletion error: " + e.getResponseBodyAsString());
+            } catch (Exception e) {
+                Notification.show("Booking deletion error: " + e.getMessage());
+            }
+        } else {
+            Notification.show("Please select a traveler to delete");
+        }
+    }
+
+    private void refreshBookingList() {
         try {
             WebClient webClient = WebClient.create("http://localhost:8080/v1/bookings");
             List<BookingDTOGetInfo> bookings = webClient.get()
@@ -60,9 +83,9 @@ public class BookingFinder extends VerticalLayout {
                 bookingGrid.setItems(Collections.emptyList());
             }
         } catch (WebClientResponseException e) {
-            Notification.show("Error retrieving traveler: " + e.getResponseBodyAsString());
+            Notification.show("Error retrieving booking: " + e.getResponseBodyAsString());
         } catch (Exception e) {
-            Notification.show("Error retrieving traveler: " + e.getMessage());
+            Notification.show("Error retrieving booking: " + e.getMessage());
         }
     }
 }

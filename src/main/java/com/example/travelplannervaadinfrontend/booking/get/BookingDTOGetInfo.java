@@ -5,10 +5,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BookingDTOGetInfo {
+    @JsonProperty("bookingId")
+    private Long bookingId;
     @JsonProperty("bookTime")
     private String bookTime;
     @JsonProperty("customerId")
-    private long customerId;
+    private Long customerId;
     @JsonProperty("customerFirstName")
     private String customerFirstName;
     @JsonProperty("customerLastName")
@@ -37,6 +39,14 @@ public class BookingDTOGetInfo {
     private String startBooking;
     @JsonProperty("endBooking")
     private String endBooking;
+
+    public Long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(Long bookingId) {
+        this.bookingId = bookingId;
+    }
 
     public String getStartBooking() {
         return startBooking;
