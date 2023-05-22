@@ -55,6 +55,7 @@ public class BookingFinder extends VerticalLayout {
 
             if (bookings != null && !bookings.isEmpty()) {
                 bookingGrid.setItems(bookings);
+
             } else {
                 bookingGrid.setItems(Collections.emptyList());
             }
