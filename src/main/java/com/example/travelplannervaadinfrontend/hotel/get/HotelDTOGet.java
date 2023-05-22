@@ -22,6 +22,7 @@ public class HotelDTOGet {
     @JsonProperty("hotelPrice")
     private int hotelPrice;
 
+
     public long getHotelId() {
         return hotelId;
     }

@@ -38,15 +38,15 @@ public class HotelGet extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
         setAlignItems(FlexComponent.Alignment.CENTER);
         hotelGrid = new Grid<>();
-        hotelGrid.addColumn(HotelDTOGet::getHotelId).setHeader("Hotel_id");
-        hotelGrid.addColumn(HotelDTOGet::getId).setHeader("Id_Name");
-        hotelGrid.addColumn(HotelDTOGet::getName).setHeader("Hotel_Name");
-        hotelGrid.addColumn(HotelDTOGet::getCountryCode).setHeader("Country_Code");
-        hotelGrid.addColumn(HotelDTOGet::getCurrency).setHeader("Currency");
-        hotelGrid.addColumn(HotelDTOGet::getHotelPrice).setHeader("Hotel_Price");
+        hotelGrid.addColumn(HotelDTOGet::getHotelId).setHeader("Hotel_id").setSortable(true);
+        hotelGrid.addColumn(HotelDTOGet::getId).setHeader("Id_Name").setSortable(true);
+        hotelGrid.addColumn(HotelDTOGet::getName).setHeader("Hotel_Name").setSortable(true);
+        hotelGrid.addColumn(HotelDTOGet::getCountryCode).setHeader("Country_Code").setSortable(true);
+        hotelGrid.addColumn(HotelDTOGet::getCurrency).setHeader("Currency").setSortable(true);
+        hotelGrid.addColumn(HotelDTOGet::getHotelPrice).setHeader("Hotel_Price").setSortable(true);
+
 
         Button showHotelsButton = new Button("Show Hotel List", event -> showHotelsInDB());
-        // showHotelsButton.addClickListener(event -> showHotelsInDB());
 
         Button searchButton = new Button("search", event -> init());
         Button backButton = new Button("Back", event -> navigateBack());
@@ -61,26 +61,6 @@ public class HotelGet extends VerticalLayout {
         getUI().ifPresent(ui -> ui.navigate("GetStart"));
     }
 
-    public void getHotelsFromdataBase() {
-        try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/hotels");
-            List<HotelDTOGet> hotels = webClient.get()
-                    .retrieve()
-                    .bodyToFlux(HotelDTOGet.class)
-                    .collectList()
-                    .block();
-
-            if (hotels != null && !hotels.isEmpty()) {
-                hotelGrid.setItems(hotels);
-            } else {
-                hotelGrid.setItems(Collections.emptyList());
-            }
-        } catch (WebClientResponseException e) {
-            Notification.show("Error retrieving traveler: " + e.getResponseBodyAsString());
-        } catch (Exception e) {
-            Notification.show("Error retrieving traveler: " + e.getMessage());
-        }
-    }
 
     private void init() {
 
