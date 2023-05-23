@@ -1,5 +1,6 @@
 package com.example.travelplannervaadinfrontend.booking.create;
 
+import com.example.travelplannervaadinfrontend.traveler.get.TravelersGet;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Route("creteBooking")
@@ -20,6 +22,7 @@ public class BookingCreator extends VerticalLayout {
     private DatePicker endDateField;
     private TextField customerIdField;
     private TextField hotelIdField;
+    private TravelersGet travelersGet;
 
     private RestTemplate restTemplate;
 
@@ -29,8 +32,6 @@ public class BookingCreator extends VerticalLayout {
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         Button saveButton = new Button("Save", event -> saveBooking());
-        Button bkButton = new Button("Back", event -> navigateBack());
-        bkButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         startDateField = new DatePicker("Start Date");
@@ -38,12 +39,10 @@ public class BookingCreator extends VerticalLayout {
         customerIdField = new TextField("Customer ID");
         hotelIdField = new TextField("Hotel ID");
 
-
-        add(startDateField, endDateField, customerIdField, hotelIdField, saveButton,bkButton);
+        add(startDateField, endDateField, customerIdField, hotelIdField, saveButton);
     }
 
     public void navigateBack() {
-
         getUI().ifPresent(ui -> ui.navigate("bookingList"));
     }
 
@@ -53,6 +52,7 @@ public class BookingCreator extends VerticalLayout {
         long customerId = Long.parseLong(customerIdField.getValue());
         long hotelId = Long.parseLong(hotelIdField.getValue());
 
+        try{
         BookingDTOCreate bookingDTO = new BookingDTOCreate(startDate, endDate, customerId, hotelId);
 
         HttpHeaders headers = new HttpHeaders();
@@ -63,9 +63,11 @@ public class BookingCreator extends VerticalLayout {
         ResponseEntity<Void> responseEntity = restTemplate.postForEntity("http://localhost:8080/v1/bookings", requestEntity, Void.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            Notification.show("Booking saved successfully your");
-        } else {
-            Notification.show("Error saving booking");
+            Notification.show("Booking saved successfully");
+            navigateBack();
+        }
+        }catch (HttpClientErrorException e ){
+            Notification.show( e.getResponseBodyAsString());
         }
     }
 }

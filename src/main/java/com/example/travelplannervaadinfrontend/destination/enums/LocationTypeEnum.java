@@ -1,4 +1,4 @@
-package com.example.travelplannervaadinfrontend.hotel.enums;
+package com.example.travelplannervaadinfrontend.destination.enums;
 
 public enum LocationTypeEnum {
 

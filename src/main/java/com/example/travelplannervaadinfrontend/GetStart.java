@@ -1,7 +1,7 @@
 package com.example.travelplannervaadinfrontend;
 
 import com.example.travelplannervaadinfrontend.booking.get.BookingFinder;
-import com.example.travelplannervaadinfrontend.hotel.get.HotelGet;
+import com.example.travelplannervaadinfrontend.destination.get.DestinationGet;
 import com.example.travelplannervaadinfrontend.traveler.get.TravelersGet;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -25,7 +25,7 @@ public class GetStart extends VerticalLayout {
        // Button button = new Button("Create User", e -> UI.getCurrent().navigate(TravelerSave.class));
         Button showCustomersButton = new Button("Menage travelers", e ->UI.getCurrent().navigate(TravelersGet.class));
 
-        Button showHotels = new Button("Show Hotels", e ->UI.getCurrent().navigate(HotelGet.class));
+        Button showHotels = new Button("Find Destination", e ->UI.getCurrent().navigate(DestinationGet.class));
         Button createBooking = new Button(" Booking plan", e ->UI.getCurrent().navigate(BookingFinder.class));
 
         Button bkButton = new Button("Back", event -> navigateBack());

@@ -1,8 +1,8 @@
-package com.example.travelplannervaadinfrontend.hotel.get;
+package com.example.travelplannervaadinfrontend.destination.get;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class HotelDTOGet {
+public class DestinationDTOGet {
 
     @JsonProperty("hotelId")
     private long hotelId;
@@ -21,6 +21,8 @@ public class HotelDTOGet {
 
     @JsonProperty("hotelPrice")
     private int hotelPrice;
+    @JsonProperty("adults_number")
+    private int personsNumber;
 
 
     public long getHotelId() {
@@ -69,5 +71,13 @@ public class HotelDTOGet {
 
     public void setHotelPrice(int hotelPrice) {
         this.hotelPrice = hotelPrice;
+    }
+
+    public int getPersonsNumber() {
+        return personsNumber;
+    }
+
+    public void setPersonsNumber(int personsNumber) {
+        this.personsNumber = personsNumber;
     }
 }

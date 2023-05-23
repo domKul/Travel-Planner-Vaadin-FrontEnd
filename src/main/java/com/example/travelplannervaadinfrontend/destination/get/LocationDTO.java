@@ -1,4 +1,4 @@
-package com.example.travelplannervaadinfrontend.hotel.get;
+package com.example.travelplannervaadinfrontend.destination.get;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

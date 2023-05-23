@@ -1,8 +1,10 @@
 package com.example.travelplannervaadinfrontend.booking.get;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
-public class BookingDTOGetInfo {
+@Component
+public class BookingDTOGet {
     @JsonProperty("bookingId")
     private Long bookingId;
     @JsonProperty("bookTime")
@@ -30,22 +32,36 @@ public class BookingDTOGetInfo {
     @JsonProperty("hotelName")
     private String hotelName;
     @JsonProperty("hotelId")
-    private Long hotelId;
+    private long hotelId;
+    @JsonProperty("hotelPrice")
+    private String hotelPrice;
     @JsonProperty("startBooking")
     private String startBooking;
     @JsonProperty("endBooking")
     private String endBooking;
-    @JsonProperty("hotelPrice")
-    private String hotelPrice;
 
-    @JsonProperty("bookingId")
     public Long getBookingId() {
         return bookingId;
     }
 
-    @JsonProperty("bookingId")
     public void setBookingId(Long bookingId) {
         this.bookingId = bookingId;
+    }
+
+    public String getStartBooking() {
+        return startBooking;
+    }
+
+    public void setStartBooking(String startBooking) {
+        this.startBooking = startBooking;
+    }
+
+    public String getEndBooking() {
+        return endBooking;
+    }
+
+    public void setEndBooking(String endBooking) {
+        this.endBooking = endBooking;
     }
 
     @JsonProperty("bookTime")
@@ -163,8 +179,8 @@ public class BookingDTOGetInfo {
         return hotelName;
     }
 
-    @JsonProperty("hotelName")
-    public void setHotelName(String hotelName) {
+    @JsonProperty("tourPrice")
+    public void setTourPrice(String hotelName) {
         this.hotelName = hotelName;
     }
 
@@ -176,26 +192,6 @@ public class BookingDTOGetInfo {
     @JsonProperty("hotelId")
     public void setHotelId(Long hotelId) {
         this.hotelId = hotelId;
-    }
-
-    @JsonProperty("startBooking")
-    public String getStartBooking() {
-        return startBooking;
-    }
-
-    @JsonProperty("startBooking")
-    public void setStartBooking(String startBooking) {
-        this.startBooking = startBooking;
-    }
-
-    @JsonProperty("endBooking")
-    public String getEndBooking() {
-        return endBooking;
-    }
-
-    @JsonProperty("endBooking")
-    public void setEndBooking(String endBooking) {
-        this.endBooking = endBooking;
     }
 
     @JsonProperty("hotelPrice")

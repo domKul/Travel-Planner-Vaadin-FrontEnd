@@ -46,7 +46,10 @@ public class TravelerSave extends VerticalLayout {
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         backButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        backButton.getElement().getStyle().set("top", "20%");
+        backButton.getElement().getStyle().set("left", "45%");
         add(
+                backButton,
                 firstName,
                 lastName,
                 birthdate,
@@ -56,8 +59,7 @@ public class TravelerSave extends VerticalLayout {
                 postalCode,
                 email,
                 phoneNumber,
-                saveButton,
-                backButton
+                saveButton
         );
     }
     public void navigateBack() {
