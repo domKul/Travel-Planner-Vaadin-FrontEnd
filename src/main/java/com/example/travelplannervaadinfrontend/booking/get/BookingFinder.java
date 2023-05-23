@@ -113,6 +113,7 @@ public class BookingFinder extends VerticalLayout {
         layout.add(new Label("Start Booking: " + booking.getStartBooking()));
         layout.add(new Label("End Booking: " + booking.getEndBooking()));
         layout.add(new Label("Hotel Price: " + booking.getHotelPrice()));
+        layout.add(new Label("Currency " + booking.getCurrency()));
 
         Button closeButton = new Button("Close", event -> dialog.close());
         layout.add(closeButton);

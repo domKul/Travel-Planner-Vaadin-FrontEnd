@@ -38,6 +38,7 @@ public class BookingDTOGetInfo {
     @JsonProperty("hotelPrice")
     private String hotelPrice;
 
+
     @JsonProperty("bookingId")
     public Long getBookingId() {
         return bookingId;

@@ -39,6 +39,16 @@ public class BookingDTOGet {
     private String startBooking;
     @JsonProperty("endBooking")
     private String endBooking;
+    @JsonProperty("currency")
+    private String currency;
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
     public Long getBookingId() {
         return bookingId;
