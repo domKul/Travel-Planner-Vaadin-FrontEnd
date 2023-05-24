@@ -1,5 +1,6 @@
 package com.example.travelplannervaadinfrontend.traveler.get;
 
+import com.example.travelplannervaadinfrontend.complaint.ComplaintGet;
 import com.example.travelplannervaadinfrontend.traveler.save.TravelerSave;
 import com.example.travelplannervaadinfrontend.traveler.save.TravelerUpdate;
 import com.vaadin.flow.component.UI;
@@ -15,7 +16,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 import java.util.Collections;
 import java.util.List;
-@Route("customer-list")
+@Route("travelers-list")
 public class TravelersGet extends VerticalLayout {
     private Grid<TravelerDTOGet> travelerGrid;
 
@@ -48,12 +49,14 @@ public class TravelersGet extends VerticalLayout {
 
         Button deleteCustomerButton = new Button("DELETE traveler", event -> deleteSelectedTraveler());
         Button editCustomerButton = new Button("EDIT traveler", event -> editSelectedTraveler());
+        Button complaintsList = new Button("Complaints",e->UI.getCurrent().navigate(ComplaintGet.class));
+        complaintsList.getElement().getStyle().set("left","25%");
 
         Button bkButton = new Button("Back", event -> navigateBack());
         bkButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         bkButton.getElement().getStyle().set("left", "45%");
 
-        buttonLayout.add(showCustomersButton,addCustomer,editCustomerButton,deleteCustomerButton);
+        buttonLayout.add(showCustomersButton,addCustomer,editCustomerButton,deleteCustomerButton,complaintsList);
 
         add(bkButton, travelerGrid,buttonLayout);
     }

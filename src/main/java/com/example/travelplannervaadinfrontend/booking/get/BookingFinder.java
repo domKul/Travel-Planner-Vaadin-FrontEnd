@@ -36,7 +36,7 @@ public class BookingFinder extends VerticalLayout {
         bookingGrid = new Grid<>();
         bookingGrid.addColumn(BookingDTOGet::getBookingId).setHeader("Booking ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getCustomerId).setHeader("Customer ID").setSortable(true);
-        bookingGrid.addColumn(BookingDTOGet::getHotelId).setHeader("Hotel ID").setSortable(true);
+        bookingGrid.addColumn(BookingDTOGet::getHotelId).setHeader("Destination ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getHotelName).setHeader("Name").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getHotelPrice).setHeader("Price").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getStartBooking).setHeader("Strart").setSortable(true);
@@ -108,11 +108,11 @@ public class BookingFinder extends VerticalLayout {
         layout.add(new Label("Postal Code: " + booking.getPostalCode()));
         layout.add(new Label("Email: " + booking.getEmail()));
         layout.add(new Label("Phone Number: " + booking.getPhoneNumber()));
-        layout.add(new Label("Hotel Name: " + booking.getHotelName()));
-        layout.add(new Label("Hotel ID: " + booking.getHotelId()));
+        layout.add(new Label("Destination Name: " + booking.getHotelName()));
+        layout.add(new Label("Destination ID: " + booking.getHotelId()));
         layout.add(new Label("Start Booking: " + booking.getStartBooking()));
         layout.add(new Label("End Booking: " + booking.getEndBooking()));
-        layout.add(new Label("Hotel Price: " + booking.getHotelPrice()));
+        layout.add(new Label("Price: " + booking.getHotelPrice()));
         layout.add(new Label("Currency " + booking.getCurrency()));
 
         Button closeButton = new Button("Close", event -> dialog.close());

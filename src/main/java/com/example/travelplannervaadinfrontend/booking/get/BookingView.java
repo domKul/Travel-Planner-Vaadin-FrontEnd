@@ -21,7 +21,7 @@ public class BookingView extends VerticalLayout {
 
         Button showBookingButton = new Button("Show Booking");
         showBookingButton.addClickListener(e -> {
-            Long bookingId = 1L; // Replace with the actual booking ID selected from the list
+            Long bookingId = 1L;
             try {
                 ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity("http://localhost:8080/v1/bookings/" + bookingId, BookingDTOGet.class);
                 if (response.getStatusCode().is2xxSuccessful()) {
@@ -40,7 +40,6 @@ public class BookingView extends VerticalLayout {
 
     private void showBookingDialog(BookingDTOGet booking) {
         Dialog dialog = new Dialog();
-        // Add components to the dialog to display the booking details
         dialog.open();
     }
 }

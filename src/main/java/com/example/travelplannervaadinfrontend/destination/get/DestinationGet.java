@@ -52,7 +52,6 @@ public class DestinationGet extends VerticalLayout {
         destinationGrid.addColumn(DestinationDTOGet::getCountryCode).setHeader("Country_Code").setSortable(true);
         destinationGrid.addColumn(DestinationDTOGet::getCurrency).setHeader("Currency").setSortable(true);
         destinationGrid.addColumn(DestinationDTOGet::getHotelPrice).setHeader("_Price").setSortable(true);
-        destinationGrid.addColumn(DestinationDTOGet::getPersonsNumber).setHeader("adults_number").setSortable(true);
 
         Div gapDiv = new Div();
         gapDiv.setHeight("3em");
@@ -180,7 +179,7 @@ public class DestinationGet extends VerticalLayout {
         }
 
         try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/hotel/hotelsSave");
+            WebClient webClient = WebClient.create("http://localhost:8080/v1/hotel/destinationSave");
 
             List<DestinationDTOGet> hotels = webClient.get()
                     .uri(uriBuilder -> uriBuilder
@@ -212,15 +211,16 @@ public class DestinationGet extends VerticalLayout {
                 unitsEnumComboBox.clear();
                 roomNumber.clear();
                 destTypeComboBox.clear();
-                Notification.show("Hotels loaded successfully");
+                showDestinationsInDB();
+                Notification.show("Destinations loaded successfully");
             } else {
                 destinationGrid.setItems(Collections.emptyList());
                 Notification.show("List is empty");
             }
         } catch (WebClientResponseException e) {
-            Notification.show("Error retrieving Hotels: " + e.getResponseBodyAsString());
+            Notification.show("Error retrieving Destinations: " + e.getResponseBodyAsString());
         } catch (Exception e) {
-            Notification.show("Error retrieving Hotels: " + e.getMessage());
+            Notification.show("Error retrieving Destinations: " + e.getMessage());
         }
     }
 
@@ -250,7 +250,7 @@ public class DestinationGet extends VerticalLayout {
 
     private void showDestinationsInDB() {
         try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/hotels");
+            WebClient webClient = WebClient.create("http://localhost:8080/v1/destinations");
 
             List<DestinationDTOGet> hotels = webClient.get()
                     .retrieve()
@@ -260,7 +260,7 @@ public class DestinationGet extends VerticalLayout {
 
             if (hotels != null && !hotels.isEmpty()) {
                 destinationGrid.setItems(hotels);
-                Notification.show("Hotels loaded successfully");
+                Notification.show("Destinations loaded successfully");
             } else {
                 Notification.show("List are empty");
 
