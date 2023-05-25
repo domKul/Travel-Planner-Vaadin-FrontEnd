@@ -52,6 +52,13 @@ public class TravelersGet extends VerticalLayout {
         Button complaintsList = new Button("Complaints",e->UI.getCurrent().navigate(ComplaintGet.class));
         complaintsList.getElement().getStyle().set("left","25%");
 
+        travelerGrid.addItemClickListener(e->{
+
+            //next step
+                }
+
+        );
+
         Button bkButton = new Button("Back", event -> navigateBack());
         bkButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         bkButton.getElement().getStyle().set("left", "45%");
@@ -73,6 +80,7 @@ public class TravelersGet extends VerticalLayout {
             Notification.show("Please select a traveler to edit");
         }
     }
+
 
     private void deleteSelectedTraveler() {
         TravelerDTOGet selectedCustomer = travelerGrid.asSingleSelect().getValue();

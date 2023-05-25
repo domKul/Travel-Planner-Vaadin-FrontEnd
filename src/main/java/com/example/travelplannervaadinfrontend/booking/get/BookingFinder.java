@@ -97,7 +97,7 @@ public class BookingFinder extends VerticalLayout {
         VerticalLayout layout = new VerticalLayout();
         layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        layout.add(new Label("Booking ID: " + booking.getBookingId()));
+       // layout.add(new Label("Booking ID: " + booking.getBookingId()));
         layout.add(new Label("Book Time: " + booking.getBookTime()));
         layout.add(new Label("Customer ID: " + booking.getCustomerId()));
         layout.add(new Label("Customer Name: " + booking.getCustomerFirstName() + " " + booking.getCustomerLastName()));
