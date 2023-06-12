@@ -36,7 +36,7 @@ public class BookingFinder extends VerticalLayout {
         bookingGrid = new Grid<>();
         bookingGrid.addColumn(BookingDTOGet::getBookingId).setHeader("Booking ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getCustomerId).setHeader("Customer ID").setSortable(true);
-        bookingGrid.addColumn(BookingDTOGet::getHotelId).setHeader("Destination ID").setSortable(true);
+        bookingGrid.addColumn(BookingDTOGet::getDestinationId).setHeader("Destination ID").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getHotelName).setHeader("Name").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getHotelPrice).setHeader("Price").setSortable(true);
         bookingGrid.addColumn(BookingDTOGet::getStartBooking).setHeader("Strart").setSortable(true);
@@ -97,7 +97,6 @@ public class BookingFinder extends VerticalLayout {
         VerticalLayout layout = new VerticalLayout();
         layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-       // layout.add(new Label("Booking ID: " + booking.getBookingId()));
         layout.add(new Label("Book Time: " + booking.getBookTime()));
         layout.add(new Label("Customer ID: " + booking.getCustomerId()));
         layout.add(new Label("Customer Name: " + booking.getCustomerFirstName() + " " + booking.getCustomerLastName()));
@@ -109,7 +108,7 @@ public class BookingFinder extends VerticalLayout {
         layout.add(new Label("Email: " + booking.getEmail()));
         layout.add(new Label("Phone Number: " + booking.getPhoneNumber()));
         layout.add(new Label("Destination Name: " + booking.getHotelName()));
-        layout.add(new Label("Destination ID: " + booking.getHotelId()));
+        layout.add(new Label("Destination ID: " + booking.getDestinationId()));
         layout.add(new Label("Start Booking: " + booking.getStartBooking()));
         layout.add(new Label("End Booking: " + booking.getEndBooking()));
         layout.add(new Label("Price: " + booking.getHotelPrice()));
@@ -156,8 +155,8 @@ public class BookingFinder extends VerticalLayout {
 
             if (bookings != null && !bookings.isEmpty()) {
                 bookingGrid.setItems(bookings);
-
             } else {
+                Notification.show("List is Empty");
                 bookingGrid.setItems(Collections.emptyList());
             }
         } catch (WebClientResponseException e) {

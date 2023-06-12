@@ -21,7 +21,7 @@ public class BookingCreator extends VerticalLayout {
     private DatePicker startDateField;
     private DatePicker endDateField;
     private TextField customerIdField;
-    private TextField hotelIdField;
+    private TextField destinationIdField;
     private TravelersGet travelersGet;
 
     private RestTemplate restTemplate;
@@ -37,9 +37,9 @@ public class BookingCreator extends VerticalLayout {
         startDateField = new DatePicker("Start Date");
         endDateField = new DatePicker("End Date");
         customerIdField = new TextField("Customer ID");
-        hotelIdField = new TextField("Hotel ID");
+        destinationIdField = new TextField("Destination ID");
 
-        add(startDateField, endDateField, customerIdField, hotelIdField, saveButton);
+        add(startDateField, endDateField, customerIdField, destinationIdField, saveButton);
     }
 
     public void navigateBack() {
@@ -50,10 +50,10 @@ public class BookingCreator extends VerticalLayout {
         String startDate = String.valueOf(startDateField.getValue());
         String endDate = String.valueOf(endDateField.getValue());
         long customerId = Long.parseLong(customerIdField.getValue());
-        long hotelId = Long.parseLong(hotelIdField.getValue());
+        long destinationId = Long.parseLong(destinationIdField.getValue());
 
         try{
-        BookingDTOCreate bookingDTO = new BookingDTOCreate(startDate, endDate, customerId, hotelId);
+        BookingDTOCreate bookingDTO = new BookingDTOCreate(startDate, endDate, customerId, destinationId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

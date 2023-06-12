@@ -31,8 +31,8 @@ public class BookingDTOGet {
     private Long phoneNumber;
     @JsonProperty("hotelName")
     private String hotelName;
-    @JsonProperty("hotelId")
-    private long hotelId;
+    @JsonProperty("destination_id")
+    private long destinationId;
     @JsonProperty("hotelPrice")
     private String hotelPrice;
     @JsonProperty("startBooking")
@@ -194,14 +194,14 @@ public class BookingDTOGet {
         this.hotelName = hotelName;
     }
 
-    @JsonProperty("hotelId")
-    public Long getHotelId() {
-        return hotelId;
+    @JsonProperty("destination_id")
+    public Long getDestinationId() {
+        return destinationId;
     }
 
-    @JsonProperty("hotelId")
-    public void setHotelId(Long hotelId) {
-        this.hotelId = hotelId;
+    @JsonProperty("destinationId")
+    public void setDestinationId(Long destinationId) {
+        this.destinationId = destinationId;
     }
 
     @JsonProperty("hotelPrice")

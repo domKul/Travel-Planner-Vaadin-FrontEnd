@@ -29,7 +29,7 @@ public class BookingDTOGetInfo {
     private Long phoneNumber;
     @JsonProperty("hotelName")
     private String hotelName;
-    @JsonProperty("hotelId")
+    @JsonProperty("destination_id")
     private Long hotelId;
     @JsonProperty("startBooking")
     private String startBooking;

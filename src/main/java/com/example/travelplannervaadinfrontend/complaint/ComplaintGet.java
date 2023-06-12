@@ -1,6 +1,8 @@
 package com.example.travelplannervaadinfrontend.complaint;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -22,6 +24,10 @@ public class ComplaintGet extends VerticalLayout {
       setSpacing(false);
       setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
       setAlignItems(FlexComponent.Alignment.CENTER);
+      Button backButton = new Button("Back",ev->navigateBack());
+      backButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+      backButton.getElement().getStyle().set("top", "20%");
+      backButton.getElement().getStyle().set("left", "45%");
       complaintGetDTOGrid = new Grid<>();
       complaintGetDTOGrid.addColumn(ComplaintGetDTO::getComplaintId).setHeader("complaintId");
       complaintGetDTOGrid.addColumn(ComplaintGetDTO::getTitle).setHeader("Title");
@@ -31,10 +37,15 @@ public class ComplaintGet extends VerticalLayout {
       complaintGetDTOGrid.addColumn(ComplaintGetDTO::getCustomerId).setHeader("customer Id");
 
       Button refreshComplaints = new Button("Refresh List",e->refreshComplaits());
+      Button addComplaint = new Button("add", e ->UI.getCurrent().navigate(ComplaintCreate.class));
 
-      add(complaintGetDTOGrid,refreshComplaints);
+      add(backButton,complaintGetDTOGrid,refreshComplaints,addComplaint);
   }
 
+    public void navigateBack() {
+
+        getUI().ifPresent(ui -> ui.navigate("travelers-list"));
+    }
     private void refreshComplaits() {
         try {
             WebClient webClient = WebClient.create("http://localhost:8080/v1/complaints");

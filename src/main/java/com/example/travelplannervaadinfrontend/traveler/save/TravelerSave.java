@@ -64,7 +64,7 @@ public class TravelerSave extends VerticalLayout {
     }
     public void navigateBack() {
 
-        getUI().ifPresent(ui -> ui.navigate("customer-list"));
+        getUI().ifPresent(ui -> ui.navigate("travelers-list"));
     }
 
     public Date getBirthdate() {

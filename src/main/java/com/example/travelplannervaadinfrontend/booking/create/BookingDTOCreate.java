@@ -9,14 +9,14 @@ public class BookingDTOCreate {
     private String endDate;
     @JsonProperty("customerId")
     private Long customerId;
-    @JsonProperty("hotelId")
-    private Long hotelId;
+    @JsonProperty("destinationId")
+    private Long destinationId;
 
-    public BookingDTOCreate(String startDate, String endDate, Long customerId, Long hotelId) {
+    public BookingDTOCreate(String startDate, String endDate, Long customerId, Long destinationId) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.customerId = customerId;
-        this.hotelId = hotelId;
+        this.destinationId = destinationId;
     }
 
     @JsonProperty("startDate")
@@ -49,13 +49,13 @@ public class BookingDTOCreate {
         this.customerId = customerId;
     }
 
-    @JsonProperty("hotelId")
-    public Long getHotelId() {
-        return hotelId;
+    @JsonProperty("destinationId")
+    public Long getDestinationId() {
+        return destinationId;
     }
 
-    @JsonProperty("hotelId")
-    public void setHotelId(Long hotelId) {
-        this.hotelId = hotelId;
+    @JsonProperty("destinationId")
+    public void setDestinationId(Long destinationId) {
+        this.destinationId = destinationId;
     }
 }

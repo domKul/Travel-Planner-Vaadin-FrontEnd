@@ -7,9 +7,11 @@ public class LocationDTO {
     private String label;
     @JsonProperty("region")
     private String region;
-
     @JsonProperty("dest_id")
     private String dest_id;
+
+    @JsonProperty("dest_type")
+    private String destination_type;
     @JsonProperty("name")
     private String name;
     @JsonProperty("country")
@@ -20,10 +22,11 @@ public class LocationDTO {
     @JsonProperty("timezone")
     private String timezone;
 
-    public LocationDTO(String label, String region, String dest_id, String name, String country, Integer hotels, String timezone) {
+    public LocationDTO(String label, String region, String dest_id,String destination_type, String name, String country, Integer hotels, String timezone) {
         this.label = label;
         this.region = region;
         this.dest_id = dest_id;
+        this.destination_type = destination_type;
         this.name = name;
         this.country = country;
         this.hotels = hotels;
@@ -86,5 +89,10 @@ public class LocationDTO {
     @JsonProperty("timezone")
     public String getTimezone() {
         return timezone;
+    }
+
+    @JsonProperty("dest_type")
+    public String getDestination_type() {
+        return destination_type;
     }
 }
