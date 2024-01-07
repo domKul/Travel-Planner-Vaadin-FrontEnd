@@ -48,7 +48,7 @@ public class ComplaintGet extends VerticalLayout {
     }
     private void refreshComplaits() {
         try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/complaints");
+            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/complaints");
             List<ComplaintGetDTO> bookings = webClient.get()
                     .retrieve()
                     .bodyToFlux(ComplaintGetDTO.class)

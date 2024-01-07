@@ -151,7 +151,7 @@ public class DestinationGet extends VerticalLayout {
     private void searchLocation() {
 
         try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/locations/getHotelslocation");
+            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/locations/getHotelslocation");
 
              webClient.post()
                     .uri(uriBuilder -> uriBuilder
@@ -180,7 +180,7 @@ public class DestinationGet extends VerticalLayout {
         }
 
         try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/hotel/destinationSave");
+            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/hotel/destinationSave");
 
             List<DestinationDTOGet> hotels = webClient.get()
                     .uri(uriBuilder -> uriBuilder
@@ -227,7 +227,7 @@ public class DestinationGet extends VerticalLayout {
 
     private void showLocationsInDB(){
         try{
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/locations/getLocations");
+            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/locations/getLocations");
 
             List<LocationDTO> locations = webClient.get()
                     .retrieve()
@@ -251,7 +251,7 @@ public class DestinationGet extends VerticalLayout {
 
     private void showDestinationsInDB() {
         try {
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/destinations");
+            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/destinations");
 
             List<DestinationDTOGet> hotels = webClient.get()
                     .retrieve()
