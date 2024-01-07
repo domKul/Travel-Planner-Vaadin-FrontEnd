@@ -19,7 +19,7 @@ public class DestinationDTOGet {
     @JsonProperty("currency")
     private String currency;
 
-    @JsonProperty("hotelPrice")
+    @JsonProperty("value")
     private int hotelPrice;
     @JsonProperty("adults_number")
     private int personsNumber;

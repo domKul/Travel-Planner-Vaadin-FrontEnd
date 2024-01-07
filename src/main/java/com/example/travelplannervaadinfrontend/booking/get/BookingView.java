@@ -5,7 +5,6 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +14,7 @@ public class BookingView extends VerticalLayout {
 
     private final RestTemplate restTemplate;
 
-    @Autowired
+
     public BookingView(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
 
