@@ -20,7 +20,7 @@ public class MainView extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         setAlignItems(Alignment.CENTER);
         getElement().getStyle().set("position", "relative");
-        Image image = new Image("https://wakacjeamigos.pl/uploads/blog/retina_21a8a187-6fb9-49f1-94bc-ad04e43cd3c1.jpg", "Example image");
+        Image image = new Image("https://www.radio.bialystok.pl/src/461/34afd5082c02ab7d6d0488ef1648c0f4", "Example image");
         add(image);
 
         Button buttonGetStart = new Button("Get Start", e -> UI.getCurrent().navigate(GetStart.class));
@@ -39,7 +39,4 @@ public class MainView extends VerticalLayout {
         add(buttonGetStart,buttonAPI);
 
     }
-
-
-
 }
