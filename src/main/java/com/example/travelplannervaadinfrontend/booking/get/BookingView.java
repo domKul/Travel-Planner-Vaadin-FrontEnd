@@ -22,7 +22,7 @@ public class BookingView extends VerticalLayout {
         showBookingButton.addClickListener(e -> {
             Long bookingId = 1L;
             try {
-                ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity("http://localhost:8080/v1/bookings/" + bookingId, BookingDTOGet.class);
+                ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity("https://travel-planner-jimh.onrender.com/v1/bookings/" + bookingId, BookingDTOGet.class);
                 if (response.getStatusCode().is2xxSuccessful()) {
                     BookingDTOGet booking = response.getBody();
                     showBookingDialog(booking);

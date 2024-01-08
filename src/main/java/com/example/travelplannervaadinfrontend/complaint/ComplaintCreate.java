@@ -68,7 +68,7 @@ public class ComplaintCreate extends VerticalLayout {
             ComplaintDTOCreate complaintDTOCreate = new ComplaintDTOCreate(title, description,
                     complaintDate, status, customerId);
 
-            WebClient webClient = WebClient.create("http://localhost:8080/v1/complaints");
+            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/complaints");
 
             webClient.post()
                     .contentType(MediaType.APPLICATION_JSON)
