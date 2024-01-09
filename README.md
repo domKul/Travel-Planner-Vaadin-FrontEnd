@@ -5,11 +5,10 @@
 - 1.First run this fron-end.
 - 2.Go to the following URL: http://localhost:8081/maninView.
 
-![Zrzut ekranu 2024-01-8 o 19.21.08.png](/Users/dominikkulpowicz/dev/Travel-Planner-Vaadin-FrontEnd/src/main/resources/images/1.png)
+![Zrzut ekranu 2024-01-8 o 19.21.08.png](1.png)
 
 - 3.`Get Strat` button will redirect you to menu
-![Zrzut ekranu 2024-01-8 o 19.25.14.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_m7Y3gV%2FZrzut%20ekranu%202024-01-8%20o%2019.25.14.png)
-
+![1.png](src%2Fmain%2Fresources%2Fimages%2F1.png)
 
 #### Running locally:
 - 1.First run back-end-> [Back-End](https://github.com/domKul/Travel-Planner).
