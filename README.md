@@ -5,10 +5,10 @@
 - 1.First run this fron-end.
 - 2.Go to the following URL: http://localhost:8081/maninView.
 
-![Zrzut ekranu 2024-01-8 o 19.21.08.png](1.png)
-
-- 3.`Get Strat` button will redirect you to menu
 ![1.png](src%2Fmain%2Fresources%2Fimages%2F1.png)
+- 3.`Get Strat` button will redirect you to menu
+
+![2.png](src%2Fmain%2Fresources%2Fimages%2F2.png)
 
 #### Running locally:
 - 1.First run back-end-> [Back-End](https://github.com/domKul/Travel-Planner).
@@ -17,13 +17,14 @@
 ### Instruction
 
 - 1.`Menage travelers` button 
-![Zrzut ekranu 2024-01-8 o 19.29.26.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_SctPbX%2FZrzut%20ekranu%202024-01-8%20o%2019.29.26.png)
+
+![3.png](src%2Fmain%2Fresources%2Fimages%2F3.png)
 In this page you can create, find, edit or delete traveler information, you cant also add complaints.
 
 Example `Create traveler`:
+![4.png](src%2Fmain%2Fresources%2Fimages%2F4.png)
+![5.png](src%2Fmain%2Fresources%2Fimages%2F5.png)
 
-![Zrzut ekranu 2024-01-8 o 19.32.58.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_K0azsp%2FZrzut%20ekranu%202024-01-8%20o%2019.32.58.png)
-![Zrzut ekranu 2024-01-8 o 19.35.17.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_zwdJUK%2FZrzut%20ekranu%202024-01-8%20o%2019.35.17.png)
 After creating traveler you can find information about him in the list, now you can do some operation on selected traveler like add complaint, delete or edit.
 
 `Complaints`-> `add` button
