@@ -54,7 +54,7 @@ When you got you destination list you can select one position and click `Find` b
 
 
 
-###### There is a chance that an application will not work if it is hosted on a free server.
+###### There is a chance that an application will not work if it is hosted on a free server.(the localhost version work in 100%)
 ###### This project was build with:
 ###### java 17
 ###### Spring version 3.0.6
