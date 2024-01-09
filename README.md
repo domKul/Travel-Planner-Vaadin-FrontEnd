@@ -30,9 +30,9 @@ After creating traveler you can find information about him in the list, now you 
 
 `Complaints`-> `add` button
 ![6.png](src%2Fmain%2Fresources%2Fimages%2F6.png)
+You need pass the customer ID (traveler id), when you create some complaint you can refresh the list and show all complaints added.
 ![7.png](src%2Fmain%2Fresources%2Fimages%2F7.png)
 
-You need pass the customer ID (traveler id), when you create some complaint you can refresh the list and show all complaints added.
 
 - 2.`Find destination`-> `Search Location` button
 ![8.png](src%2Fmain%2Fresources%2Fimages%2F8.png)
@@ -48,6 +48,12 @@ After doing that you can find destination.
 
 Pss all information `dest_id` and `destination_type` must be correctly copied from Locations like this
 ![12.png](src%2Fmain%2Fresources%2Fimages%2F12.png)
+
+When you got you destination list you can select one position and click `Find` butto to search more information about it will open google search with the selected destination
+![13.png](src%2Fmain%2Fresources%2Fimages%2F13.png)
+
+
+
 ###### This project was build with:
 ###### java 17
 ###### Spring version 3.0.6
