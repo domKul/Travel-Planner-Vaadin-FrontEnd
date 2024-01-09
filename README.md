@@ -21,31 +21,33 @@
 ![3.png](src%2Fmain%2Fresources%2Fimages%2F3.png)
 In this page you can create, find, edit or delete traveler information, you cant also add complaints.
 
+
 Example `Create traveler`:
 ![4.png](src%2Fmain%2Fresources%2Fimages%2F4.png)
-![5.png](src%2Fmain%2Fresources%2Fimages%2F5.png)
 
 After creating traveler you can find information about him in the list, now you can do some operation on selected traveler like add complaint, delete or edit.
+![5.png](src%2Fmain%2Fresources%2Fimages%2F5.png)
 
 `Complaints`-> `add` button
-![Zrzut ekranu 2024-01-8 o 19.40.54.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_5fsc1H%2FZrzut%20ekranu%202024-01-8%20o%2019.40.54.png)
-![Zrzut ekranu 2024-01-8 o 19.41.26.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_aivTYY%2FZrzut%20ekranu%202024-01-8%20o%2019.41.26.png)
+![6.png](src%2Fmain%2Fresources%2Fimages%2F6.png)
+![7.png](src%2Fmain%2Fresources%2Fimages%2F7.png)
+
 You need pass the customer ID (traveler id), when you create some complaint you can refresh the list and show all complaints added.
 
 - 2.`Find destination`-> `Search Location` button
-![Zrzut ekranu 2024-01-8 o 19.45.20.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_h8SMPw%2FZrzut%20ekranu%202024-01-8%20o%2019.45.20.png)
-![Zrzut ekranu 2024-01-8 o 19.46.33.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_M5icAR%2FZrzut%20ekranu%202024-01-8%20o%2019.46.33.png)
+![8.png](src%2Fmain%2Fresources%2Fimages%2F8.png)
+![9.png](src%2Fmain%2Fresources%2Fimages%2F9.png)
+
 
 After giving the `Name` and `Locale` you will find all locations with given `Name`
-![Zrzut ekranu 2024-01-8 o 19.49.21.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_bCyowr%2FZrzut%20ekranu%202024-01-8%20o%2019.49.21.png)
+![10.png](src%2Fmain%2Fresources%2Fimages%2F10.png)
 After doing that you can find destination.
 
 - 2.`Find destination`-> `Search Destination` button
+![11.png](src%2Fmain%2Fresources%2Fimages%2F11.png)
 
-![Zrzut ekranu 2024-01-8 o 19.57.48.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_s5SqHM%2FZrzut%20ekranu%202024-01-8%20o%2019.57.48.png) p
-
-Pss all information `dest_id` and `destination_type` must by correctly copied from Locations like this
-![Zrzut ekranu 2024-01-8 o 20.00.40.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fy1%2Fshp6rqtx4dd67b7yv868yt100000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_76ey2w%2FZrzut%20ekranu%202024-01-8%20o%2020.00.40.png)
+Pss all information `dest_id` and `destination_type` must be correctly copied from Locations like this
+![12.png](src%2Fmain%2Fresources%2Fimages%2F12.png)
 ###### This project was build with:
 ###### java 17
 ###### Spring version 3.0.6
