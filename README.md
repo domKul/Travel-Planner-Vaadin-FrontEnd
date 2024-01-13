@@ -2,7 +2,7 @@
 
 
 #### Running from onrender.com:
-- 1.First run this fron-end.
+- 1.First clone this fron-end repo and run.
 - 2.Go to the following URL: http://localhost:8081/maninView.
 
 ![1.png](src%2Fmain%2Fresources%2Fimages%2F1.png)
