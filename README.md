@@ -49,11 +49,24 @@ After doing that you can find destination.
 Pss all information `dest_id` and `destination_type` must be correctly copied from Locations like this
 ![12.png](src%2Fmain%2Fresources%2Fimages%2F12.png)
 
-When you got you destination list you can select one position and click `Find` butto to search more information about it will open google search with the selected destination
+When you got your destination list you can select one position and click `Find` button to search more information about it will open google search with the selected destination
 ![13.png](src%2Fmain%2Fresources%2Fimages%2F13.png)
 
+`Add Booking` button
+When you choose your destination you can create a booking
 
+![14.png](src%2Fmain%2Fresources%2Fimages%2F14.png)
+Select Start End date, the customer id(traveler id) and destination id.When you add a booking successfully you will receive an email to the
+address of selected traveler with information about thr booking
 
+![15.png](src%2Fmain%2Fresources%2Fimages%2F15.png)
+
+- 3.`Booking plan` button
+![16.png](src%2Fmain%2Fresources%2Fimages%2F16.png)
+
+All your bookings are here you can add new and delete when you click on one of booking plan you will see full information about
+
+![17.png](src%2Fmain%2Fresources%2Fimages%2F17.png)
 ###### There is a chance that an application will not work if it is hosted on a free server.(the localhost version work in 100%)
 ###### This project was build with:
 ###### java 17
