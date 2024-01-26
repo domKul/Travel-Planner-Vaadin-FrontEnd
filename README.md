@@ -1,7 +1,8 @@
 # Travel-Planner-Vaadin-FrontEnd is vacation planner
+!! This is just to represent the functionality of the backend!!
 
 
-#### Running from onrender.com:
+#### Running from vps.com:
 - 1.First clone this fron-end repo and run.
 - 2.Go to the following URL: http://localhost:8081/maninView.
 
@@ -67,7 +68,7 @@ address of selected traveler with information about thr booking
 All your bookings are here you can add new and delete when you click on one of booking plan you will see full information about
 
 ![17.png](src%2Fmain%2Fresources%2Fimages%2F17.png)
-###### There is a chance that an application will not work if it is hosted on a free server.(the localhost version work in 100%)
+###### There is a chance that an application will not work if it is hosted on a vps server.(the localhost version work in 100%)
 ###### This project was build with:
 ###### java 17
 ###### Spring version 3.0.6

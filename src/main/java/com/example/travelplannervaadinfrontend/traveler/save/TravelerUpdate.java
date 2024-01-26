@@ -85,7 +85,7 @@ public class TravelerUpdate extends Dialog {
         updatedCustomer.setPhoneNumber(Integer.parseInt(newPhoneNumber));
 
         try {
-            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/customers");
+            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
             TravelerDTO response = webClient.put()
                     .uri("/{customerId}", customer.getCustomerId())
                     .contentType(MediaType.APPLICATION_JSON)

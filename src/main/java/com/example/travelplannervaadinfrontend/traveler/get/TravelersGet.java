@@ -86,7 +86,7 @@ public class TravelersGet extends VerticalLayout {
         TravelerDTOGet selectedCustomer = travelerGrid.asSingleSelect().getValue();
         if (selectedCustomer != null) {
             try {
-                WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/customers");
+                WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
                 webClient.delete()
                         .uri("/{customerId}", selectedCustomer.getCustomerId())
                         .retrieve()
@@ -105,7 +105,7 @@ public class TravelersGet extends VerticalLayout {
     }
     public void refreshTravelerList() {
         try {
-            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/customers");
+            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
             List<TravelerDTOGet> customers = webClient.get()
                     .uri("/getCustomers")
                     .retrieve()
@@ -127,7 +127,7 @@ public class TravelersGet extends VerticalLayout {
 
     private void showTravelers() {
         try {
-            WebClient webClient = WebClient.create("https://travel-planner-jimh.onrender.com/v1/customers");
+            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
 
             List<TravelerDTOGet> customers = webClient.get()
                     .uri("/getCustomers")

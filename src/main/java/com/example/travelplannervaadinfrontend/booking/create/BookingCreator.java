@@ -60,7 +60,7 @@ public class BookingCreator extends VerticalLayout {
 
         HttpEntity<BookingDTOCreate> requestEntity = new HttpEntity<>(bookingDTO, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.postForEntity("https://travel-planner-jimh.onrender.com/v1/bookings", requestEntity, Void.class);
+        ResponseEntity<Void> responseEntity = restTemplate.postForEntity("http://vps-7c561477.vps.ovh.net:8080/v1/bookings", requestEntity, Void.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             Notification.show("Booking saved successfully");

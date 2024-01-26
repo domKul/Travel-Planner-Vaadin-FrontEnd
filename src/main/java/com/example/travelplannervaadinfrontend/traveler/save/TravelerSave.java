@@ -110,7 +110,7 @@ public class TravelerSave extends VerticalLayout {
 
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
             RestTemplate restTemplate = new RestTemplate();
-            String url = "https://travel-planner-jimh.onrender.com/v1/customers";
+            String url = "http://vps-7c561477.vps.ovh.net:8080/v1/customers";
             ResponseEntity<TravelerDTO> responseEntity = restTemplate.postForEntity(url, requestEntity, TravelerDTO.class);
 
             Notification.show("Customer saved");
