@@ -1,30 +1,7 @@
-# Etap budowania
-FROM gradle:7.3.3-jdk17 AS build
+FROM openjdk:17-jdk-slim
 
-WORKDIR /app
-
-COPY . .
-
-# Kopiowanie wrappera Gradle
-COPY gradlew .
-
-# Uruchomienie builda
-RUN ./gradlew build
-
-# Etap uruchamiania
-FROM openjdk:17-alpine
-
-WORKDIR /app
-
-# Skopiowanie zbudowanego pliku JAR z etapu budowania
-COPY --from=build /app/build/libs/*.jar app.jar
-
-# Skopiowanie plików zasobów aplikacji Vaadin
-COPY frontend/generated/jar-resources /app/frontend/generated/jar-resources
-
-# Ustawienie uprawnień dla plików zasobów
-RUN chmod -R 777 frontend/generated/jar-resources
+COPY build/libs/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
