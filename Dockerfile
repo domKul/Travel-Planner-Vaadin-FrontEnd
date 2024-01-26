@@ -19,6 +19,9 @@ WORKDIR /app
 # Skopiowanie zbudowanego pliku JAR z etapu budowania
 COPY --from=build /app/build/libs/*.jar app.jar
 
+# Skopiowanie plików zasobów aplikacji Vaadin
+COPY frontend/generated/jar-resources /app/frontend/generated/jar-resources
+
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
