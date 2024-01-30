@@ -58,7 +58,7 @@ public class Convert extends VerticalLayout {
             return;
         }
         try {
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/currency/conversion")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://vps-7c561477.vps.ovh.net:8080/currency/conversion")
                     .queryParam("from", fromCurrency)
                     .queryParam("to", toCurrency)
                     .queryParam("amount", amountValue);
