@@ -1,15 +1,21 @@
 package com.example.travelplannervaadinfrontend.traveler.get;
 
+import com.example.travelplannervaadinfrontend.booking.create.BookingCreator;
 import com.example.travelplannervaadinfrontend.complaint.ComplaintGet;
+import com.example.travelplannervaadinfrontend.traveler.get.currency.Convert;
+import com.example.travelplannervaadinfrontend.traveler.get.currency.CurrencyDto;
 import com.example.travelplannervaadinfrontend.traveler.save.TravelerSave;
 import com.example.travelplannervaadinfrontend.traveler.save.TravelerUpdate;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -19,7 +25,7 @@ import java.util.List;
 @Route("travelers-list")
 public class TravelersGet extends VerticalLayout {
     private Grid<TravelerDTOGet> travelerGrid;
-
+    HorizontalLayout horizontalLayout = new HorizontalLayout();
     public void navigateBack() {
 
         getUI().ifPresent(ui -> ui.navigate("GetStart"));
@@ -54,7 +60,7 @@ public class TravelersGet extends VerticalLayout {
 
         travelerGrid.addItemClickListener(e->{
 
-            //next step
+                    //next step
                 }
 
         );
@@ -63,7 +69,16 @@ public class TravelersGet extends VerticalLayout {
         bkButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         bkButton.getElement().getStyle().set("left", "45%");
 
-        buttonLayout.add(showCustomersButton,addCustomer,editCustomerButton,deleteCustomerButton,complaintsList);
+        Dialog dialogConvert = new Dialog();
+        Convert convertCreation = new Convert();
+        dialogConvert.add(convertCreation);
+        Button createConvertion = new Button("Convert Currency", e -> {
+            dialogConvert.open();
+        });
+
+
+        horizontalLayout.add(createConvertion);
+        buttonLayout.add(horizontalLayout,showCustomersButton,addCustomer,editCustomerButton,deleteCustomerButton,complaintsList);
 
         add(bkButton, travelerGrid,buttonLayout);
     }
