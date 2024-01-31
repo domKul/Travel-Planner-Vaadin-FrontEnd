@@ -1,21 +1,17 @@
 package com.example.travelplannervaadinfrontend.traveler.get;
 
-import com.example.travelplannervaadinfrontend.booking.create.BookingCreator;
 import com.example.travelplannervaadinfrontend.complaint.ComplaintGet;
 import com.example.travelplannervaadinfrontend.traveler.get.currency.Convert;
-import com.example.travelplannervaadinfrontend.traveler.get.currency.CurrencyDto;
 import com.example.travelplannervaadinfrontend.traveler.save.TravelerSave;
 import com.example.travelplannervaadinfrontend.traveler.save.TravelerUpdate;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
