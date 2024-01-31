@@ -18,8 +18,7 @@
 ### Instruction
 
 - 1.`Menage travelers` button 
-
-![3.png](src%2Fmain%2Fresources%2Fimages%2F3.png)
+![18.png](src%2Fmain%2Fresources%2Fimages%2F18.png)
 In this page you can create, find, edit or delete traveler information, you cant also add complaints.
 
 
