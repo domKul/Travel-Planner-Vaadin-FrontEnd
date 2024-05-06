@@ -3,7 +3,7 @@
 
 
 #### Running from vps.com:
-- 2.Go to the following URL: [DEMO](http://vps-7c561477.vps.ovh.net:8081/maninView).
+- Go to the following URL: [DEMO](http://vps-7c561477.vps.ovh.net:8081/maninView).
 
 ![1.png](src%2Fmain%2Fresources%2Fimages%2F1.png)
 - 3.`Get Strat` button will redirect you to menu
