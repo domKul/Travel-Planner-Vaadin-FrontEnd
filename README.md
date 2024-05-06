@@ -3,8 +3,7 @@
 
 
 #### Running from vps.com:
-- 1.First clone this fron-end repo and run.
-- 2.Go to the following URL: http://localhost:8081/maninView.
+- 2.Go to the following URL: [DEMO](http://vps-7c561477.vps.ovh.net:8081/maninView).
 
 ![1.png](src%2Fmain%2Fresources%2Fimages%2F1.png)
 - 3.`Get Strat` button will redirect you to menu
@@ -13,7 +12,8 @@
 
 #### Running locally:
 - 1.First run back-end-> [Back-End](https://github.com/domKul/Travel-Planner).
-- 2.Then run front.
+- 2.Clone this fron-end repo and run.
+- 3.Then run front.
  
 ### Instruction
 
