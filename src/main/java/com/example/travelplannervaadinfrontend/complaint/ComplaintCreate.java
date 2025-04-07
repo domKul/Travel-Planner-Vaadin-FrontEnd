@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 
 @Route("createComplaint")
 public class ComplaintCreate extends VerticalLayout {
-    @Value("${vps.server.url})")
+    @Value("${vps.server.url}")
     String vpsUrl;
     private TextField titleField;
     private TextArea descriptionField;

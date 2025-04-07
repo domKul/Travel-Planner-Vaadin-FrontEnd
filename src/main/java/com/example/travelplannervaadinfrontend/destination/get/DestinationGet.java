@@ -24,7 +24,7 @@ import java.util.List;
 
 @Route("getDestinations")
 public class DestinationGet extends VerticalLayout {
-    @Value("${vps.server.url})")
+    @Value("${vps.server.url}")
     String vpsUrl;
     private final Grid<DestinationDTOGet> destinationGrid;
     private final Grid<LocationDTO> locationDTOGrid;

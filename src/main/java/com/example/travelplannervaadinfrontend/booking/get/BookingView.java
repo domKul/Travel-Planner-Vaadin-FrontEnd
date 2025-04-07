@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class BookingView extends VerticalLayout {
 
     private final RestTemplate restTemplate;
-    @Value("${vps.server.url})")
+    @Value("${vps.server.url}")
     String vpsUrl;
 
 

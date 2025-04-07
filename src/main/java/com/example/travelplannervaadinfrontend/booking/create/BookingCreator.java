@@ -24,7 +24,7 @@ public class BookingCreator extends VerticalLayout {
     private TextField customerIdField;
     private TextField destinationIdField;
     private TravelersGet travelersGet;
-    @Value("${vps.server.url})")
+    @Value("${vps.server.url}")
     String vpsUrl;
 
     private RestTemplate restTemplate;
