@@ -9,6 +9,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -19,6 +20,8 @@ import java.time.LocalDateTime;
 
 @Route("createComplaint")
 public class ComplaintCreate extends VerticalLayout {
+    @Value("${vps.server.url})")
+    String vpsUrl;
     private TextField titleField;
     private TextArea descriptionField;
     private DatePicker complaintDatePicker;
@@ -68,7 +71,7 @@ public class ComplaintCreate extends VerticalLayout {
             ComplaintDTOCreate complaintDTOCreate = new ComplaintDTOCreate(title, description,
                     complaintDate, status, customerId);
 
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/complaints");
+            WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/complaints");
 
             webClient.post()
                     .contentType(MediaType.APPLICATION_JSON)

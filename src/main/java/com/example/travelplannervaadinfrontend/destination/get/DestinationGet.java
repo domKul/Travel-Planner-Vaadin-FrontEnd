@@ -14,6 +14,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -23,6 +24,8 @@ import java.util.List;
 
 @Route("getDestinations")
 public class DestinationGet extends VerticalLayout {
+    @Value("${vps.server.url})")
+    String vpsUrl;
     private final Grid<DestinationDTOGet> destinationGrid;
     private final Grid<LocationDTO> locationDTOGrid;
     private LocationGet locationGet;
@@ -152,7 +155,7 @@ public class DestinationGet extends VerticalLayout {
     private void searchLocation() {
 
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/locations/getHotelslocation");
+            WebClient webClient = WebClient.create( vpsUrl + ":8080/v1/locations/getHotelslocation");
 
              webClient.post()
                     .uri(uriBuilder -> uriBuilder
@@ -181,7 +184,7 @@ public class DestinationGet extends VerticalLayout {
         }
 
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/hotel/destinationSave");
+            WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/hotel/destinationSave");
 
             List<DestinationDTOGet> hotels = webClient.get()
                     .uri(uriBuilder -> uriBuilder
@@ -228,7 +231,7 @@ public class DestinationGet extends VerticalLayout {
 
     private void showLocationsInDB(){
         try{
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/locations/getLocations");
+            WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/locations/getLocations");
 
             List<LocationDTO> locations = webClient.get()
                     .retrieve()
@@ -252,7 +255,7 @@ public class DestinationGet extends VerticalLayout {
 
     private void showDestinationsInDB() {
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/destinations");
+            WebClient webClient = WebClient.create( vpsUrl + ":8080/v1/destinations");
 
             List<DestinationDTOGet> hotels = webClient.get()
                     .retrieve()

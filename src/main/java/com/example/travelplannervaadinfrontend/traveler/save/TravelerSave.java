@@ -10,6 +10,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -26,6 +27,8 @@ import java.util.Date;
 
 @Route("traveler")
 public class TravelerSave extends VerticalLayout {
+    @Value("${vps.server.url}")
+    String vpsUrl;
     private final TextField firstName = new TextField("First name");
     private final TextField lastName = new TextField("Last name");
     private final DatePicker birthdate = new DatePicker("Birthdate");
@@ -110,7 +113,7 @@ public class TravelerSave extends VerticalLayout {
 
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
             RestTemplate restTemplate = new RestTemplate();
-            String url = "http://vps-7c561477.vps.ovh.net:8080/v1/customers";
+            String url = vpsUrl + ":8080/v1/customers";
             ResponseEntity<TravelerDTO> responseEntity = restTemplate.postForEntity(url, requestEntity, TravelerDTO.class);
 
             Notification.show("Customer saved");

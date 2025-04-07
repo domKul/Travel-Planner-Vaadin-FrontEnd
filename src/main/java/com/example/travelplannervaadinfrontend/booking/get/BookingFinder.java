@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -26,6 +27,8 @@ public class BookingFinder extends VerticalLayout {
     private Grid<BookingDTOGet> bookingGrid;
     @Autowired
     private  RestTemplate restTemplate;
+    @Value("${vps.server.url})")
+    String vpsUrl;
 
     public BookingFinder() {
         setMargin(true);
@@ -76,7 +79,7 @@ public class BookingFinder extends VerticalLayout {
     private void showBookingDetails(Long bookingId) {
 
         try {
-            ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity("http://vps-7c561477.vps.ovh.net:8080/v1/bookings/" + bookingId, BookingDTOGet.class);
+            ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity(vpsUrl + ":8080/v1/bookings/" + bookingId, BookingDTOGet.class);
             if (response.getStatusCode().is2xxSuccessful()) {
                 BookingDTOGet booking = response.getBody();
                 showBookingDialog(booking);
@@ -126,7 +129,7 @@ public class BookingFinder extends VerticalLayout {
         BookingDTOGet selectedBooking = bookingGrid.asSingleSelect().getValue();
         if (selectedBooking != null) {
             try {
-                WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/bookings");
+                WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/bookings");
                 webClient.delete()
                         .uri("/{bookingId}", selectedBooking.getBookingId())
                         .retrieve()
@@ -146,7 +149,7 @@ public class BookingFinder extends VerticalLayout {
 
     private void refreshBookingList() {
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/bookings");
+            WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/bookings");
             List<BookingDTOGet> bookings = webClient.get()
                     .retrieve()
                     .bodyToFlux(BookingDTOGet.class)

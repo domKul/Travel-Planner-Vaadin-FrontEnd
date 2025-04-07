@@ -13,6 +13,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -20,6 +21,8 @@ import java.util.Collections;
 import java.util.List;
 @Route("travelers-list")
 public class TravelersGet extends VerticalLayout {
+    @Value("${vps.server.url}")
+    String vpsUrl;
     private Grid<TravelerDTOGet> travelerGrid;
     HorizontalLayout horizontalLayout = new HorizontalLayout();
     public void navigateBack() {
@@ -97,7 +100,7 @@ public class TravelersGet extends VerticalLayout {
         TravelerDTOGet selectedCustomer = travelerGrid.asSingleSelect().getValue();
         if (selectedCustomer != null) {
             try {
-                WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
+                WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/customers");
                 webClient.delete()
                         .uri("/{customerId}", selectedCustomer.getCustomerId())
                         .retrieve()
@@ -116,7 +119,7 @@ public class TravelersGet extends VerticalLayout {
     }
     public void refreshTravelerList() {
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
+            WebClient webClient = WebClient.create( vpsUrl +":8080/v1/customers");
             List<TravelerDTOGet> customers = webClient.get()
                     .uri("/getCustomers")
                     .retrieve()
@@ -138,7 +141,7 @@ public class TravelersGet extends VerticalLayout {
 
     private void showTravelers() {
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
+            WebClient webClient = WebClient.create(vpsUrl + ":8080/v1/customers");
 
             List<TravelerDTOGet> customers = webClient.get()
                     .uri("/getCustomers")

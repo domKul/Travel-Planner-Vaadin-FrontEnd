@@ -8,6 +8,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -23,6 +24,8 @@ public class BookingCreator extends VerticalLayout {
     private TextField customerIdField;
     private TextField destinationIdField;
     private TravelersGet travelersGet;
+    @Value("${vps.server.url})")
+    String vpsUrl;
 
     private RestTemplate restTemplate;
 
@@ -60,7 +63,7 @@ public class BookingCreator extends VerticalLayout {
 
         HttpEntity<BookingDTOCreate> requestEntity = new HttpEntity<>(bookingDTO, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.postForEntity("http://vps-7c561477.vps.ovh.net:8080/v1/bookings", requestEntity, Void.class);
+        ResponseEntity<Void> responseEntity = restTemplate.postForEntity(vpsUrl +":8080/v1/bookings", requestEntity, Void.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             Notification.show("Booking saved successfully");

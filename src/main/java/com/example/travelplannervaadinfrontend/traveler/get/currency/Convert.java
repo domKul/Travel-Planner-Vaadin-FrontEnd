@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +21,8 @@ import java.util.List;
 
 @Route("convert")
 public class Convert extends VerticalLayout {
+    @Value("${vps.server.url})")
+    String vpsUrl;
     private ComboBox<CurrencyEnum> fromComboBox;
     private ComboBox<CurrencyEnum> toComboBox;
     private BigDecimalField amount;
@@ -54,7 +57,7 @@ public class Convert extends VerticalLayout {
             return;
         }
         try {
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://vps-7c561477.vps.ovh.net:8080/currency/conversion")
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(vpsUrl + ":8080/currency/conversion")
                     .queryParam("from", fromCurrency)
                     .queryParam("to", toCurrency)
                     .queryParam("amount", amountValue);

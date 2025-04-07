@@ -5,6 +5,7 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 public class BookingView extends VerticalLayout {
 
     private final RestTemplate restTemplate;
+    @Value("${vps.server.url})")
+    String vpsUrl;
 
 
     public BookingView(RestTemplate restTemplate) {
@@ -22,7 +25,7 @@ public class BookingView extends VerticalLayout {
         showBookingButton.addClickListener(e -> {
             Long bookingId = 1L;
             try {
-                ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity("http://vps-7c561477.vps.ovh.net:8080/v1/bookings/" + bookingId, BookingDTOGet.class);
+                ResponseEntity<BookingDTOGet> response = restTemplate.getForEntity(vpsUrl  + ":8080/v1/bookings/" + bookingId, BookingDTOGet.class);
                 if (response.getStatusCode().is2xxSuccessful()) {
                     BookingDTOGet booking = response.getBody();
                     showBookingDialog(booking);
