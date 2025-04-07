@@ -8,6 +8,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -20,6 +21,8 @@ import java.util.Date;
 @Route("travelerUpdate")
 public class TravelerUpdate extends Dialog {
     private final TravelerDTOGet customer;
+    @Value("${vps.server.url})")
+    String vpsUrl;
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
     private  DatePicker birthdate = new DatePicker("Birthdate");
@@ -85,7 +88,7 @@ public class TravelerUpdate extends Dialog {
         updatedCustomer.setPhoneNumber(Integer.parseInt(newPhoneNumber));
 
         try {
-            WebClient webClient = WebClient.create("http://vps-7c561477.vps.ovh.net:8080/v1/customers");
+            WebClient webClient = WebClient.create(vpsUrl+":8080/v1/customers");
             TravelerDTO response = webClient.put()
                     .uri("/{customerId}", customer.getCustomerId())
                     .contentType(MediaType.APPLICATION_JSON)

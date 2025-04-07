@@ -14,7 +14,6 @@ public class MainView extends VerticalLayout {
 
 
     public MainView() {
-
         setMargin(true);
         setSpacing(false);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
